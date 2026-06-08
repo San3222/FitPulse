@@ -11,7 +11,7 @@ const app = express();
 app.use(cors({
   origin: [
     'http://localhost:3000',
-    'https://fit-pulse-teal.vercel.app/'  // ← apna exact Vercel URL daalo
+    'https://fit-pulse-teal.vercel.app'  // ← apna exact Vercel URL daalo
   ],
   credentials: true
 }));
