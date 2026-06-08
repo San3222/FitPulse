@@ -1,4 +1,4 @@
-# 🏃 FitTrack — Full Stack Fitness App
+# 🏃 FitPulse— Full Stack Fitness App
 
 A pixel-perfect mobile fitness tracking app built with React, Node.js, Express, and MongoDB — matching the provided design screenshots.
 
