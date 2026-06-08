@@ -9,13 +9,13 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  // origin: 'http://localhost:3000',   //https://fit-pulse-teal.vercel.app/
-    origin: [
+  origin: [
     'http://localhost:3000',
-    'https://fit-pulse-teal.vercel.app/'  // ← apna Vercel URL daalo
+    'https://fit-pulse-teal.vercel.app/'  // ← apna exact Vercel URL daalo
   ],
   credentials: true
 }));
+
 app.use(express.json());
 
 // MongoDB Connection
