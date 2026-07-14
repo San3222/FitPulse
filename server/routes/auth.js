@@ -74,4 +74,19 @@ router.get('/me', auth, async (req, res) => {
   res.json(req.user);
 });
 
+// PUT /api/auth/profile - update body/nutrition profile fields (used for BMR/TDEE calc)
+router.put('/profile', auth, async (req, res) => {
+  try {
+    const updatable = ['age', 'gender', 'height', 'weight', 'targetWeight', 'activityLevel', 'goal', 'dailyWaterGoalMl'];
+    updatable.forEach(field => {
+      if (req.body[field] !== undefined) req.user[field] = req.body[field];
+    });
+    await req.user.save();
+    res.json(req.user);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Error updating profile' });
+  }
+});
+
 module.exports = router;

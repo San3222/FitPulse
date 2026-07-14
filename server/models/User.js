@@ -31,6 +31,23 @@ const userSchema = new mongoose.Schema({
     type: Number,
     default: 0
   },
+  // --- Profile fields (used for BMR/TDEE + nutrition targets) ---
+  age: { type: Number, default: null },
+  gender: { type: String, enum: ['male', 'female', 'other', null], default: null },
+  height: { type: Number, default: null }, // cm
+  weight: { type: Number, default: null }, // kg (latest known weight)
+  targetWeight: { type: Number, default: null }, // kg
+  activityLevel: {
+    type: String,
+    enum: ['sedentary', 'light', 'moderate', 'active', 'very_active'],
+    default: 'moderate'
+  },
+  goal: {
+    type: String,
+    enum: ['lose_weight', 'maintain', 'gain_muscle', 'endurance'],
+    default: 'maintain'
+  },
+  dailyWaterGoalMl: { type: Number, default: 2500 },
   friends: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
@@ -42,7 +59,7 @@ const userSchema = new mongoose.Schema({
 });
 
 // Hash password before saving
-userSchema.pre('save', async function(next) {
+userSchema.pre('save', async function (next) {
   if (!this.isModified('password')) return next();
   this.password = await bcrypt.hash(this.password, 12);
   // Generate invite code
@@ -53,7 +70,7 @@ userSchema.pre('save', async function(next) {
 });
 
 // Compare passwords
-userSchema.methods.comparePassword = async function(candidatePassword) {
+userSchema.methods.comparePassword = async function (candidatePassword) {
   return bcrypt.compare(candidatePassword, this.password);
 };
 

@@ -20,9 +20,11 @@ export default function ProfileScreen() {
   };
 
   const menuItems = [
-    { icon: '🎯', label: 'My Goals', desc: 'Set your fitness targets' },
+    { icon: '🎯', label: 'My Goals', desc: 'Set your fitness targets', path: '/app/goals' },
+    { icon: '🍽️', label: 'Nutrition', desc: 'Diet plan & food log', path: '/app/nutrition' },
+    { icon: '📏', label: 'Body Metrics', desc: 'Weight, measurements & photos', path: '/app/bodymetrics' },
     { icon: '🔔', label: 'Notifications', desc: 'Workout reminders' },
-    { icon: '📊', label: 'Detailed Stats', desc: 'Full progress history' },
+    { icon: '📊', label: 'Detailed Stats', desc: 'Full progress history', path: '/app/progress' },
     { icon: '🏆', label: 'Achievements', desc: 'Your badges and rewards' },
     { icon: '❓', label: 'Help & Support', desc: 'FAQs and contact' },
   ];
@@ -91,7 +93,7 @@ export default function ProfileScreen() {
             </div>
           </div>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" strokeWidth="2">
-            <polyline points="9 18 15 12 9 6"/>
+            <polyline points="9 18 15 12 9 6" />
           </svg>
         </div>
       </div>
@@ -100,7 +102,12 @@ export default function ProfileScreen() {
       <div className="profile-section">
         <p className="profile-section-title">Account Settings</p>
         {menuItems.map(item => (
-          <div key={item.label} className="profile-menu-item">
+          <div
+            key={item.label}
+            className="profile-menu-item"
+            onClick={() => item.path && navigate(item.path)}
+            style={{ cursor: item.path ? 'pointer' : 'default' }}
+          >
             <div className="menu-icon">
               <span style={{ fontSize: 18 }}>{item.icon}</span>
             </div>
@@ -109,7 +116,7 @@ export default function ProfileScreen() {
               <div style={{ fontSize: 12, color: '#9CA3AF', marginTop: 1 }}>{item.desc}</div>
             </div>
             <svg className="menu-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <polyline points="9 18 15 12 9 6"/>
+              <polyline points="9 18 15 12 9 6" />
             </svg>
           </div>
         ))}

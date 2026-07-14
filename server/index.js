@@ -28,6 +28,9 @@ app.use('/api/auth', require('./routes/auth'));
 app.use('/api/workouts', require('./routes/workouts'));
 app.use('/api/progress', require('./routes/progress'));
 app.use('/api/leaderboard', require('./routes/leaderboard'));
+app.use('/api/nutrition', require('./routes/nutrition'));
+app.use('/api/bodymetrics', require('./routes/bodymetrics'));
+app.use('/api/goals', require('./routes/goals'));
 
 // Health check
 app.get('/api/health', (req, res) => {
